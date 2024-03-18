@@ -4,6 +4,7 @@ import { makeFullModal, uploadComments, showMoreComments } from './open-full-pic
 
 const bigPicture = document.querySelector('.big-picture');
 const loadMoreButton = document.querySelector('.social__comments-loader');
+const cancelBigPicture = document.querySelector('.big-picture__cancel');
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -25,6 +26,11 @@ const onCloseBigPicture = (evt) => {
   }
 };
 
+const onOutsideClick = (evt) => {
+  if (evt.target.classList.contains('big-picture')) {
+    closeModal();
+  }
+};
 
 const openModal = () => {
   bigPicture.classList.remove('hidden');
@@ -47,7 +53,8 @@ const onCommentsLoaderClick = function (evt) {
 loadMoreButton.addEventListener('click', onCommentsLoaderClick);
 
 pictureBlock.addEventListener('click', onPictureBlockClick);
-bigPicture.addEventListener('click', onCloseBigPicture);
+cancelBigPicture.addEventListener('click', onCloseBigPicture);
 loadMoreButton.addEventListener('click', onCommentsLoaderClick);
+document.addEventListener('click', onOutsideClick);
 
 export {onDocumentKeydown, onCloseBigPicture, openModal, closeModal, onPictureBlockClick, bigPicture, loadMoreButton };
