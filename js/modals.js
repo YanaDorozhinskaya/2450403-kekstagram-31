@@ -1,6 +1,6 @@
 import { isEscapeKey } from './utils.js';
 import { pictureBlock } from './thumbnail-rendering.js';
-import { makeFullModal, uploadComments, showMoreComments } from './open-full-picture.js';
+import { makeFullModal, uploadComments } from './open-full-picture.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const loadMoreButton = document.querySelector('.social__comments-loader');
@@ -19,11 +19,8 @@ function closeModal () {
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
-const onCloseBigPicture = (evt) => {
-  const isLoadMoreButton = evt.target.closest('.social__comments-loader');
-  if (!isLoadMoreButton) {
-    closeModal();
-  }
+const onCloseBigPicture = () => {
+  closeModal();
 };
 
 const onOutsideClick = (evt) => {
@@ -47,10 +44,8 @@ function onPictureBlockClick (evt) {
 const onCommentsLoaderClick = function (evt) {
   evt.preventDefault();
   uploadComments();
-  showMoreComments();
 };
 
-loadMoreButton.addEventListener('click', onCommentsLoaderClick);
 
 pictureBlock.addEventListener('click', onPictureBlockClick);
 cancelBigPicture.addEventListener('click', onCloseBigPicture);
