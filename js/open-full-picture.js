@@ -82,4 +82,4 @@ const makeFullModal = (clikedPic, bigPic) => {
     });
 };
 
-export { makeFullModal, uploadComments};
+export { makeFullModal, uploadComments };
